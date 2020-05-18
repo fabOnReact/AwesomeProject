@@ -1,73 +1,49 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+//import AnimatedList from './AnimatedList';
+import FullscreenCard from './FullscreenCard';
+import {CardTitle, CardContent} from 'react-native-material-cards';
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from 'react-native';
+export default class App extends React.Component {
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+    data = [
+        "Test 1",
+        "Test 2",
+        "Test 3",
+        "Test 4",
+        "Test 5",
+        "Test 6",
+        "Test 7",
+        "Test 8",
+        "Test 9",
+    ];
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView
-          zoomScale={1}
-          minimumZoomScale={0.4}
-          maximumZoomScale={4}
-          centerContent
-        >
-          <View style={styles.wrapper}>
-            <Text style={styles.welcome}>
-              Welcome to React Native!
-            </Text>
-            <Text style={styles.instructions}>
-              To get started, edit App.js
-            </Text>
-            <Text style={styles.instructions}>
-              {instructions}
-            </Text>
-          </View>
-        </ScrollView>
-      </View>
-    );
-  }
+    _render({item = "U"}) {
+        let r;
+        return (
+            <FullscreenCard ref={ref => r = ref}>
+                <CardTitle title={item}></CardTitle>
+                <CardContent>
+                    <Text onPress={() => r.toggle()}>Click to expand</Text>
+                </CardContent>
+            </FullscreenCard>
+        );
+    }
+
+    render() {
+        return (
+            <ScrollView style={styles.list}>
+                <Text>Test</Text>
+                {/*<AnimatedList style={styles.list} renderItem={this._render.bind(this)} data={this.data} keyExtractor={i => i} inAnimation={'zoomInLeft'} outAnimation={'zoomOutRight'} delay={50} duration={280}>
+    </AnimatedList>*/}
+                <FlatList style={styles.list} renderItem={this._render.bind(this)} data={this.data} keyExtractor={i => i}></FlatList>
+            </ScrollView>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'blue',
-  },
-  wrapper: {
-    flex: 1,
-    alignSelf: 'stretch',
-    backgroundColor: 'red',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    list: {
+        flex: 1
+    }
 });
