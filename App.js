@@ -1,21 +1,12 @@
-import React, { Component } from "react";
-import { ScrollView, TextInput, View, Text, StyleSheet } from "react-native";
+import * as React from 'react';
+import { View, StyleSheet, TextInput } from 'react-native';
 
-export default class App extends Component {
-  render() {
-    return (
-      <ScrollView>
-        <TextInput
-          onFocus={() => console.warn("onFocus")}
-          style={{ 
-            textAlign: 'right',
-            backgroundColor: 'yellow',
-          }} />
-        <View style={{ height: 2000 }} />
-      </ScrollView>
-    );
-  }
+export default function App() {
+  return (
+    <View>
+      <TextInput
+        placeholder="My placeholder" 
+      />
+    </View>
+  );
 }
-
-const styles = StyleSheet.create({
-});
