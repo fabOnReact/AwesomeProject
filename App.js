@@ -1,17 +1,21 @@
-import * as React from 'react';
-import { Text, ScrollView } from 'react-native';
+import React, { Component } from "react";
+import { ScrollView, TextInput, View, Text, StyleSheet } from "react-native";
 
-import { WebView } from 'react-native-webview';
+export default class App extends Component {
+  render() {
+    return (
+      <ScrollView>
+        <TextInput
+          onFocus={() => console.warn("onFocus")}
+          style={{ 
+            textAlign: 'right',
+            backgroundColor: 'yellow',
+          }} />
+        <View style={{ height: 2000 }} />
+      </ScrollView>
+    );
+  }
+}
 
-const App = () => {
-  return (
-    <ScrollView>
-      <Text style={{ fontSize: 20 }}>Native Component</Text>
-      <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
-      <Text style={{ fontSize: 20 }}>WebView</Text>
-      <WebView style={{ height: 1000 }} source={{ uri: 'https://fabriziobertoglio.xyz/' }} />
-    </ScrollView>
-  );
-};
-
-export default App;
+const styles = StyleSheet.create({
+});
