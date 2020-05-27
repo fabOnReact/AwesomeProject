@@ -35,4 +35,11 @@ allprojects {
         jcenter()
         maven { url 'https://www.jitpack.io' }
     }
+    configurations.all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute module("com.facebook.react:react-native:+") with project(":ReactAndroid")
+            }
+        }
+    }
 }
