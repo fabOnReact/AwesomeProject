@@ -1,27 +1,29 @@
-import * as React from 'react';
-import { TextInput, Text, View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { password: undefined };
-  }
-  render() {
-    return (
-      <TextInput 
-        style={styles.textInput} />
-        //style={[TEXT_STYLE.textInput, styles.textInput ]} 
-        //secureTextEntry={true} 
-        //onChangeText={(text) => this.setState({ password: text })} 
-        //placeholderTextColor={COLORS.Default.darkGray} />
-    );
-  }
+export default function App() {
+  const [pressedBox, setPressefBox] = React.useState('')
+  return (
+    <React.Fragment>
+      <TouchableOpacity style={styles.box} onPress={() => setPressefBox('top')} />
+      <View accessible={false}>
+        <TouchableOpacity style={styles.boxBottom} onPress={() => setPressefBox('bottom')} />
+      </View>
+    </React.Fragment>
+  );
 }
 
 const styles = StyleSheet.create({
-  textInput: { 
-    fontFamily: 'Lato-Regular', 
-    fontStyle: this.state.password ? 'normal' : 'italic', 
-    backgroundColor: 'yellow',
+  box: {
+    width: 150,
+    height: 150,
+    borderWidth: 1,
   },
-});
+  boxBottom: {
+    width: 120,
+    height: 200,
+    borderWidth: 1,
+    marginTop: -75,
+    elevation: 10,
+  }
+})
