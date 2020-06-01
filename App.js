@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import {Text, View, FlatList} from 'react-native';
 
-export default function App() {
-  const [pressedBox, setPressefBox] = React.useState('')
-  return (
-    <React.Fragment>
-      <TouchableOpacity style={styles.box} onPress={() => setPressefBox('top')} />
-      <View accessible={false}>
-        <TouchableOpacity style={styles.boxBottom} onPress={() => setPressefBox('bottom')} />
-      </View>
-    </React.Fragment>
-  );
-}
-
-const styles = StyleSheet.create({
-  box: {
-    width: 150,
-    height: 150,
-    borderWidth: 1,
-  },
-  boxBottom: {
-    width: 120,
-    height: 200,
-    borderWidth: 1,
-    marginTop: -75,
-    elevation: 10,
+export default class App extends React.Component {
+  myFunc(info) {
+    console.warn('it should log me!');
+    console.warn(info);
   }
-})
+
+  extractor(item, index) {
+    console.log("item", item);
+    console.log("index", index);
+    return index;
+  } 
+
+  render() {
+    //it not work
+    const data = [0, 5, 6, 7, 1, 1, 2, 3, 1];
+    // Using array without leading 0 will work
+    // const data = [1, 5, 6, 7, 1, 1, 2, 3, 1];
+    console.log(data);
+    return (
+      <View>
+        <FlatList
+          data={data}
+          renderItem={({item}) => <Text style={{fontSize: 80}}> ss </Text>}
+          keyExtractor={(item, index) => index.toString()}
+          onViewableItemsChanged={this.myFunc}
+        />
+      </View>
+    );
+  }
+}
