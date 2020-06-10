@@ -1,78 +1,33 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
-
-const BACKSPACE = 'Backspace';
+import { Button, TextInput, ScrollView, StyleSheet } from 'react-native';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      label: '',
-    };
+  state = { text: null }
+  setText = () => {
+    this.setState({ text: "A really long string of text that extends far beyond the end of the TextInput" });
   }
-
-  handleKeyPress = ({ nativeEvent: { key: keyValue } }) => {
-    if (keyValue === BACKSPACE) return this.handleKeyPressed('++');
-    return this.handleKeyPressed(keyValue);
-  };
-
-  handleKeyPressed = key => {
-    this.setState({ label: `${this.state.label}${key}` });
-  };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.paragraph}>
-          Output of the onKeyPress event:
-        </Text>
-        <Text style={styles.paragraph}>
-          {this.state.label}
-        </Text>
-
-        <Text style={styles.paragraph}>
-          Numeric (dot, comma, backspace,... will work):{' '}
-        </Text>
-        <TextInput
-          ref={input => {
-            this.input = input;
-          }}
+      <ScrollView style={styles.container}>
+        <TextInput 
+          value={this.state.text}
+          placeholder="A really long string of text that extends far beyond the end of the TextInput"
           style={styles.input}
-          onKeyPress={this.handleKeyPress}
-          autoFocus
-          keyboardType="numeric"
         />
-
-        <Text style={styles.paragraph}>Default: </Text>
-        <TextInput
-          ref={input => {
-            this.input = input;
-          }}
-          style={styles.input}
-          onKeyPress={this.handleKeyPress}
-          autoFocus
-        />
-      </View>
+        <Button 
+          title="Set Text"
+          onPress={this.setText} />
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#ecf0f1',
   },
   input: {
-    width: 300,
-    height: 56,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
+    height: 40,
+    textAlign: "left",
   },
 });
