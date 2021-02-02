@@ -1,27 +1,19 @@
-import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, {Component} from 'react';
+import {AppRegistry, View, Text, ScrollView} from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Change code in the editor and watch it change on your phone! Save to get a shareable url.
-      </Text>
-    </View>
+    <ScrollView>
+      <View style={{
+        // if `borderRadius` > 0 and `height` is large enough like 3000 (2000 is ok on my android device), `backgroundColor` will disappear.
+        borderRadius: 1,
+        height: 3000,
+        backgroundColor: 'red',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <Text>Test</Text>
+      </View>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
